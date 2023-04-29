@@ -22,6 +22,8 @@ public class CoursejdbcCommandLine implements CommandLineRunner{
 		repository.insert(new Course(236677,"spring boot", "backend"));
 		repository.insert(new Course(2366777,"networking", "backend"));
 		
+		repository.deleteById(23667);
+		
 	}
 
 }
