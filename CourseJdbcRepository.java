@@ -2,6 +2,7 @@ package com.example.com.menkashah;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Repository
@@ -23,13 +24,25 @@ public class CourseJdbcRepository {
 		       delete from course
 		       where id = ?;
      		""";
-
+	private static String select_QUERY=	
+			""" 
+			
+		       select * from course
+		       where id = ?;
+     		""";
+	
+	
 	public void insert(Course course) {
 	     springjdbcTemplate.update(INSERT_QUERY,
 	    		 course.getId(), course.getName(), course.getAuthor());
 	}
 	public void deleteById(long id) {
 		springjdbcTemplate.update(delete_QUERY,
+				id);
+	}
+	public Course findById(long id) {
+		 return springjdbcTemplate.queryForObject(select_QUERY,
+				new BeanPropertyRowMapper<>(Course.class),
 				id);
 	}
 }

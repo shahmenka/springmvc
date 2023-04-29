@@ -24,6 +24,8 @@ public class CoursejdbcCommandLine implements CommandLineRunner{
 		
 		repository.deleteById(23667);
 		
+		System.out.println(repository.findById(23668));
+		
 	}
 
 }
